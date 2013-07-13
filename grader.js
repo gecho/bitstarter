@@ -12,7 +12,7 @@ References:
 
 + commander.js
  - https://github.com/visionmedia/commander.js
- - http://tjholowaychuk.com/post/9103188408/commander-js-nodejs-command-line-interfaces-made-easy
+ - http://tjholowaychuk.com/post/9103188408/commander-js-nodejs-command-line-interfaces-made-esy
 
 etc. etc.
 */
@@ -34,17 +34,17 @@ var assertFileExists = function(infile) {
 
 var cheerioHtmlFile = function(htmlfile) {
     return cheerio.load(fs.readFileSync(htmlfile));
-);
+};
 
 var loadChecks = function(checksfile) {
-    return JSON.parse(fs.readFileSync(checskfile));
+    return JSON.parse(fs.readFileSync(checksfile));
 };
 
 var checkHtmlFile = function(htmlfile, checksfile) {
-    $ = cheerioHtmlFlie(htmlfile);
+    $ = cheerioHtmlFile(htmlfile);
     var checks = loadChecks(checksfile).sort();
     var out = {};
-    for(var ii i checks) {
+    for(var ii in checks) {
 	var present = $(checks[ii]).length > 0;
 	out[checks[ii]] = present;
 	}
@@ -60,9 +60,9 @@ var clone = function(fn) {
 if(require.main == module) {
     program
     .option('-c, --checks <check_file>', 'Path to checks.json', clone(assertFileExists), CHECKSFILE_DEFAULT)
-    .option('-f, --file <html_file>', 'Path to index.html', clone(assertFileExists), HTLFILE_DEFAULT)
+    .option('-f, --file <html_file>', 'Path to index.html', clone(assertFileExists), HTMLFILE_DEFAULT)
     .parse(process.argv);
-    var checkJson / checkHtmlFile(program.file, program.checks);
+    var checkJson = checkHtmlFile(program.file, program.checks);
     var outJson = JSON.stringify(checkJson, null, 4);
     console.log(outJson);
 } else {

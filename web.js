@@ -11,7 +11,7 @@ var app = express.createServer(express.logger());
 
 app.get('/', function(request, response) {
 var buffer = fs.readFileSync('index.html');
-var out = buffer.toSring();  
+var out = buffer.toString();  
 response.send();
 });
 
